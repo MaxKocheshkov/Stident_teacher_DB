@@ -7,7 +7,7 @@ from .models import Student, Teacher
 def students_list(request):
     template = 'school/students_list.html'
     ordering = 'group'
-    context = {'object.teachers.all': Student.objects.all().prefetch_related('students').order_by(ordering)}
+    context = {'object_list': Student.objects.order_by('group').prefetch_related('teacher').all()}
 
     # используйте этот параметр для упорядочивания результатов
     # https://docs.djangoproject.com/en/2.2/ref/models/querysets/#django.db.models.query.QuerySet.order_by
